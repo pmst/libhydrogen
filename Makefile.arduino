@@ -2,12 +2,13 @@ TARGET_DEVICE ?= atmega328p
 HWTYPE ?= HYDRO_TARGET_DEVICE_ATMEGA328
 ARDUINO_HOME ?= /Applications/Arduino.app/Contents/Java
 ARDUINO_TOOLS ?= $(ARDUINO_HOME)/hardware/tools/avr/bin
+ARDUINO_FRAMEWORK ?= $(ARDUINO_HOME)/hardware/arduino/avr
 AR = $(ARDUINO_TOOLS)/avr-gcc-ar
 CC = $(ARDUINO_TOOLS)/avr-gcc
 RANLIB = $(ARDUINO_TOOLS)/avr-gcc-ranlib
 WFLAGS ?= -Wall -Wextra -Wmissing-prototypes -Wdiv-by-zero -Wbad-function-cast -Wcast-align -Wcast-qual -Wfloat-equal -Wmissing-declarations -Wnested-externs -Wno-unknown-pragmas -Wpointer-arith -Wredundant-decls -Wstrict-prototypes -Wswitch-enum -Wno-type-limits
 CFLAGS ?= -mmcu=$(TARGET_DEVICE) -Os -mcall-prologues -fno-exceptions -ffunction-sections -fdata-sections -flto $(WFLAGS)
-CFLAGS += -I. -I$(ARDUINO_HOME)/hardware/arduino/avr/cores/arduino -I$(ARDUINO_HOME)/hardware/arduino/avr/variants/standard
+CFLAGS += -I. -I$(ARDUINO_FRAMEWORK)/cores/arduino -I$(ARDUINO_FRAMEWORK)/variants/standard
 CFLAGS += -DHYDRO_HWTYPE=$(HYDRO_HWTYPE)
 OBJ = hydrogen.o
 ARDUINO_PACKAGE ?= hydrogen-crypto.zip
